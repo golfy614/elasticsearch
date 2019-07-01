@@ -1,0 +1,13 @@
+{ cluster_name: 'el-petitions',
+  status: 'green',
+  timed_out: false,
+  number_of_nodes: 3,
+  number_of_data_nodes: 3,
+  active_primary_shards: 0,
+  active_shards: 0,
+  relocating_shards: 0,
+  initializing_shards: 0,
+  unassigned_shards: 0,
+  delayed_unassigned_shards: 0,
+  number_of_pending_tasks: 0,
+  number_of_in_flight_fetch: 0 }
