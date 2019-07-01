@@ -1,10 +1,14 @@
 var elasticsearch = require("elasticsearch");
+let data = require("./data.json")
+let query = require("./query.json")
+// console.log("data",data)
 var client = new elasticsearch.Client({
-  host: "localhost:9200",
-  log: "trace"
+  host: "localhost:9200"
+  // log: "trace"
 });
 if (client) {
   getdataElas()
+  // insertElas()
 } else {
   console.log("can't connect");
 }
@@ -19,11 +23,7 @@ if (client) {
 //     }
 //   });
 async function getdataElas() {
-  const response = await client.search({
-    index: "blog",
-    type: "posts",
-    q: 'PostName:Elasticsearch'
-  });
+  const response = await client.search(query);
 console.log(response.hits.hits[0]._index)
   // for (const tweet of response.hits.hits) {
   //   console.log("tweet:", tweet);
@@ -31,18 +31,7 @@ console.log(response.hits.hits[0]._index)
 }
 
 async function insertElas(){
-  client.index(
-    {
-      index: "blog",
-      id: "1",
-      type: "posts",
-      body: {
-        PostName: "Integrating Elasticsearch Into Your Node.js Application",
-        PostType: "Tutorial",
-        PostBody:
-          "This is the text of our tutorial about using Elasticsearch in your Node.js application."
-      }
-    },
+  client.index(data,
     function(err, resp, status) {
       console.log(resp);
     }
